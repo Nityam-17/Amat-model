@@ -1,0 +1,83 @@
+CRATE DEFECT DETECTOR - HOW TO USE (23 Nov 2026)
+================================================
+One folder, all our models, one switch: MODE.
+
+WHAT IS IN THE FOLDER
+  crate_detector.py      the code (one class: CrateDetector). Import this.
+  config.json            which models each MODE uses + the tested threshold per MODE
+  models/                8 model files (7 Faster R-CNN + 1 YOLO11s), ~1.2 GB
+  databricks_notebook.py ready notebook: import into Databricks, pick MODE in the dropdown, Run all
+  run_folder.py          same thing from a terminal, writes one JSON line per image (+ optional drawn boxes)
+  selftest.py + selftest/  3 sample images + our answers -> check your setup gives the same result
+  requirements.txt
+
+THE MODES (pick one)
+  Numbers = our validation set (701 photos, 3,196 labelled defects, 36 healthy photos).
+  Every mode uses a threshold set so only 6 of the 36 healthy photos get any box (same false-alarm level for all).
+  "big" = longest side >= 32 px on the 1024x1024 image. ms = per photo on an RTX A5000 GPU, incl. reading the file.
+
+  MODE              models  all defects  small  BIG    damaged photos   ms    use when
+                                                       with a correct
+                                                       find
+  single            1       36.8%        21.4%  50.8%  73.5%            70    default / fastest / what we reported
+  ensemble          4       41.7%        25.3%  56.7%  78.3%            170   best over ALL sizes incl. small
+  bigdefect         4       40.7%        11.2%  67.8%  77.9%            185   catch the BIG defects (gives up small)
+  single_bigdefect  1       32.3%         5.5%  56.7%  71.6%            70    big defects, but must be fast
+
+  Honest check for bigdefect (threshold fit on half the val, measured on the other half): ~65% on big defects.
+  On a CPU expect roughly 1-3 s per photo per model (4-model modes = 4x).
+
+  Models per mode:
+    single           fr
+    ensemble         fr + cur + A16 + y32   (y32 is YOLO -> needs the ultralytics package)
+    bigdefect        mB + B + mBfull + C12  (Faster R-CNN only, no ultralytics needed)
+    single_bigdefect mB
+  For 2+ models, boxes of the same class that overlap (IoU >= 0.55) are merged; the merged score = average of the
+  models' scores (a model that did not see it counts 0). So a defect found by all 4 models scores highest.
+
+INPUT
+  A crate photo as a file path, a PIL image or an RGB numpy array (H x W x 3).
+  The models were trained on 1024 x 1024 images (the same export as the labelled dataset). Feed those if you can.
+  Any other size is resized to 1024 x 1024 (stretched) and the boxes are scaled back to the original size.
+
+OUTPUT (per photo)
+  {"mode": "single", "threshold": 0.5679, "crate_flagged": true,
+   "defects": [{"class": "Crack", "score": 0.91, "box_xyxy": [x0, y0, x1, y1]}, ...]}
+  classes: Crack, Dent, Water damage, Scratch, Hole, Broken edge
+  crate_flagged = at least one defect above the threshold.
+
+USE IT IN PYTHON (e.g. inside the logo / golden-image pipeline)
+    import sys; sys.path.append("/Workspace/Users/<you>/CRATE-DETECTOR-23NOV")
+    from crate_detector import CrateDetector
+    det = CrateDetector("/Workspace/Users/<you>/CRATE-DETECTOR-23NOV", mode=MODE)   # load ONCE, reuse for all photos
+    r = det.predict(image)          # path / PIL / numpy RGB
+    if r["crate_flagged"]: ...
+  Example of one switch for your pipeline:
+    MODE = "single"        # "single" | "ensemble" | "bigdefect" | "single_bigdefect"
+  Change the threshold only if you want more/fewer flags:  CrateDetector(folder, mode, threshold=0.4)
+    lower = more defects found + more false alarms on healthy crates; higher = the opposite.
+  det.predict_raw(image) gives every candidate box before the threshold (1024 px coordinates) if you want to tune.
+
+DATABRICKS STEPS
+  1. Unzip and upload the whole CRATE-DETECTOR-23NOV folder to your Workspace (or a Volume),
+     e.g. /Workspace/Users/<you>/CRATE-DETECTOR-23NOV
+  2. Import databricks_notebook.py as a notebook (Workspace > Import > the file). Attach a GPU cluster if possible.
+  3. Cell 1 (install): only if torch / torchvision are missing; use the same index URL as your other AMAT notebooks.
+     ultralytics is needed ONLY for MODE "ensemble". Do not write the index URL in shared files (it has a token).
+  4. Set the widgets: MODE, PACKAGE_DIR, IMAGE_DIR (THRESHOLD empty = tested value). Run all.
+  5. Check once:  %sh cd /Workspace/Users/<you>/CRATE-DETECTOR-23NOV && python selftest.py
+     GPU: should print ALL OK. CPU: "single" and "single_bigdefect" give the same result; the 4-model modes can differ by
+     a few boxes near the threshold (two of the models run half precision on GPU and full precision on CPU) - fine.
+  No internet needed at run time: all weights are in models/.
+
+FROM A TERMINAL
+  python run_folder.py CRATE-DETECTOR-23NOV  photos/  results.jsonl --mode bigdefect --draw drawn/
+
+VERSIONS WE TESTED WITH
+  torch 2.14.1, torchvision 0.29.1, ultralytics 8.4.197, Python 3.10, RTX A5000.
+  Faster R-CNN files are plain torchvision state dicts (fasterrcnn_resnet50_fpn_v2, 7 outputs = background + 6 classes).
+
+LIMITS (please keep in mind)
+  - Numbers are from the validation set, which was also used to pick models; the untouched test set is not scored yet.
+  - Small defects (< 32 px) are mostly missed in the bigdefect modes. Use "ensemble" if small ones matter.
+  - Big cracks in the newer photos (crate_2xxxxx) are the weakest spot (~38% in bigdefect).

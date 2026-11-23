@@ -1,0 +1,1990 @@
+{
+ "single": {
+  "crate_200242.png": {
+   "mode": "single",
+   "threshold": 0.567913,
+   "crate_flagged": false,
+   "defects": []
+  },
+  "crate_000256.png": {
+   "mode": "single",
+   "threshold": 0.567913,
+   "crate_flagged": true,
+   "defects": [
+    {
+     "class": "Scratch",
+     "score": 0.9996,
+     "box_xyxy": [
+      130.7,
+      542.3,
+      455.6,
+      728.3
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.9994,
+     "box_xyxy": [
+      373.6,
+      614.1,
+      445.6,
+      721.9
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.9994,
+     "box_xyxy": [
+      584.2,
+      494.7,
+      876.1,
+      734.9
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.9993,
+     "box_xyxy": [
+      707.0,
+      325.7,
+      722.8,
+      382.6
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.9992,
+     "box_xyxy": [
+      568.4,
+      548.4,
+      843.4,
+      709.0
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.9992,
+     "box_xyxy": [
+      598.1,
+      524.9,
+      734.0,
+      770.6
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.9991,
+     "box_xyxy": [
+      627.1,
+      262.2,
+      677.4,
+      376.0
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.9982,
+     "box_xyxy": [
+      570.8,
+      559.2,
+      782.2,
+      728.6
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.9971,
+     "box_xyxy": [
+      676.2,
+      526.1,
+      729.4,
+      582.1
+     ]
+    },
+    {
+     "class": "Broken edge",
+     "score": 0.9969,
+     "box_xyxy": [
+      491.3,
+      611.3,
+      509.2,
+      648.1
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.9955,
+     "box_xyxy": [
+      570.5,
+      552.7,
+      746.6,
+      616.2
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.9894,
+     "box_xyxy": [
+      701.6,
+      483.8,
+      802.1,
+      695.3
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.9801,
+     "box_xyxy": [
+      592.4,
+      315.9,
+      777.0,
+      632.1
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.9767,
+     "box_xyxy": [
+      570.2,
+      564.7,
+      859.7,
+      664.5
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.9728,
+     "box_xyxy": [
+      653.5,
+      498.8,
+      863.2,
+      665.6
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.9572,
+     "box_xyxy": [
+      594.8,
+      530.3,
+      878.0,
+      643.5
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.9022,
+     "box_xyxy": [
+      586.1,
+      540.7,
+      792.1,
+      758.7
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.8914,
+     "box_xyxy": [
+      469.4,
+      357.0,
+      474.2,
+      387.5
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.8828,
+     "box_xyxy": [
+      588.9,
+      391.2,
+      795.0,
+      747.8
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.8762,
+     "box_xyxy": [
+      575.1,
+      533.5,
+      781.0,
+      624.4
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.8194,
+     "box_xyxy": [
+      568.8,
+      545.0,
+      762.6,
+      683.5
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.802,
+     "box_xyxy": [
+      748.3,
+      496.8,
+      792.6,
+      622.6
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.7887,
+     "box_xyxy": [
+      673.9,
+      547.0,
+      833.3,
+      670.3
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.7801,
+     "box_xyxy": [
+      579.9,
+      579.0,
+      682.0,
+      720.9
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.7375,
+     "box_xyxy": [
+      564.9,
+      553.8,
+      717.9,
+      715.8
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.7369,
+     "box_xyxy": [
+      684.2,
+      497.8,
+      847.2,
+      647.4
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.7082,
+     "box_xyxy": [
+      704.9,
+      549.7,
+      765.9,
+      695.7
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.6506,
+     "box_xyxy": [
+      592.5,
+      658.2,
+      674.9,
+      712.6
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.6446,
+     "box_xyxy": [
+      415.9,
+      653.2,
+      438.0,
+      737.2
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.6352,
+     "box_xyxy": [
+      660.7,
+      521.5,
+      821.6,
+      685.5
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.5801,
+     "box_xyxy": [
+      696.0,
+      552.6,
+      803.6,
+      687.7
+     ]
+    }
+   ]
+  },
+  "crate_000794.png": {
+   "mode": "single",
+   "threshold": 0.567913,
+   "crate_flagged": true,
+   "defects": [
+    {
+     "class": "Scratch",
+     "score": 0.9996,
+     "box_xyxy": [
+      597.3,
+      376.9,
+      660.4,
+      414.6
+     ]
+    },
+    {
+     "class": "Crack",
+     "score": 0.9987,
+     "box_xyxy": [
+      307.2,
+      516.0,
+      351.2,
+      531.1
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.9979,
+     "box_xyxy": [
+      419.2,
+      525.4,
+      463.1,
+      607.0
+     ]
+    },
+    {
+     "class": "Broken edge",
+     "score": 0.7228,
+     "box_xyxy": [
+      417.6,
+      228.5,
+      430.0,
+      237.6
+     ]
+    }
+   ]
+  }
+ },
+ "ensemble": {
+  "crate_200242.png": {
+   "mode": "ensemble",
+   "threshold": 0.371794,
+   "crate_flagged": false,
+   "defects": []
+  },
+  "crate_000256.png": {
+   "mode": "ensemble",
+   "threshold": 0.371794,
+   "crate_flagged": true,
+   "defects": [
+    {
+     "class": "Scratch",
+     "score": 0.9876,
+     "box_xyxy": [
+      140.1,
+      548.3,
+      442.1,
+      723.1
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.9575,
+     "box_xyxy": [
+      626.8,
+      261.7,
+      680.1,
+      382.5
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.9162,
+     "box_xyxy": [
+      706.9,
+      325.5,
+      722.3,
+      382.4
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.8753,
+     "box_xyxy": [
+      594.9,
+      313.0,
+      774.9,
+      652.4
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.8654,
+     "box_xyxy": [
+      370.5,
+      618.8,
+      441.9,
+      720.8
+     ]
+    },
+    {
+     "class": "Broken edge",
+     "score": 0.8525,
+     "box_xyxy": [
+      491.5,
+      611.5,
+      508.9,
+      648.3
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.8286,
+     "box_xyxy": [
+      600.5,
+      542.7,
+      736.1,
+      750.0
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.7977,
+     "box_xyxy": [
+      674.1,
+      525.9,
+      728.7,
+      597.4
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.7898,
+     "box_xyxy": [
+      574.7,
+      548.4,
+      769.6,
+      619.2
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.7514,
+     "box_xyxy": [
+      569.1,
+      553.4,
+      717.2,
+      709.2
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.746,
+     "box_xyxy": [
+      578.5,
+      536.0,
+      825.0,
+      729.3
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.7361,
+     "box_xyxy": [
+      702.6,
+      520.4,
+      794.2,
+      689.9
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.7236,
+     "box_xyxy": [
+      747.3,
+      500.7,
+      793.2,
+      621.4
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.6558,
+     "box_xyxy": [
+      737.5,
+      549.5,
+      834.9,
+      621.3
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.6276,
+     "box_xyxy": [
+      602.8,
+      547.5,
+      856.8,
+      644.5
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.5985,
+     "box_xyxy": [
+      670.5,
+      540.4,
+      820.3,
+      662.8
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.5956,
+     "box_xyxy": [
+      468.8,
+      357.4,
+      474.0,
+      389.9
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.5734,
+     "box_xyxy": [
+      702.9,
+      554.0,
+      768.8,
+      688.4
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.5672,
+     "box_xyxy": [
+      570.2,
+      574.6,
+      670.0,
+      711.8
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.563,
+     "box_xyxy": [
+      593.0,
+      650.8,
+      673.5,
+      722.5
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.5252,
+     "box_xyxy": [
+      415.4,
+      665.7,
+      437.6,
+      732.4
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.5162,
+     "box_xyxy": [
+      348.8,
+      649.5,
+      445.4,
+      719.0
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.5028,
+     "box_xyxy": [
+      693.2,
+      541.6,
+      842.2,
+      635.3
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.4972,
+     "box_xyxy": [
+      569.5,
+      564.4,
+      828.2,
+      668.1
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.4817,
+     "box_xyxy": [
+      721.8,
+      500.9,
+      805.3,
+      639.3
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.4278,
+     "box_xyxy": [
+      629.9,
+      584.8,
+      692.6,
+      705.6
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.4007,
+     "box_xyxy": [
+      818.6,
+      497.8,
+      861.2,
+      552.2
+     ]
+    }
+   ]
+  },
+  "crate_000794.png": {
+   "mode": "ensemble",
+   "threshold": 0.371794,
+   "crate_flagged": true,
+   "defects": [
+    {
+     "class": "Scratch",
+     "score": 0.9259,
+     "box_xyxy": [
+      597.2,
+      376.0,
+      659.9,
+      413.9
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.8243,
+     "box_xyxy": [
+      420.2,
+      526.8,
+      463.8,
+      605.9
+     ]
+    },
+    {
+     "class": "Crack",
+     "score": 0.8221,
+     "box_xyxy": [
+      306.6,
+      515.3,
+      352.1,
+      530.9
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.4314,
+     "box_xyxy": [
+      396.8,
+      551.3,
+      419.1,
+      560.6
+     ]
+    }
+   ]
+  }
+ },
+ "bigdefect": {
+  "crate_200242.png": {
+   "mode": "bigdefect",
+   "threshold": 0.268252,
+   "crate_flagged": false,
+   "defects": []
+  },
+  "crate_000256.png": {
+   "mode": "bigdefect",
+   "threshold": 0.268252,
+   "crate_flagged": true,
+   "defects": [
+    {
+     "class": "Scratch",
+     "score": 0.9935,
+     "box_xyxy": [
+      626.0,
+      260.6,
+      679.3,
+      385.1
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.984,
+     "box_xyxy": [
+      707.3,
+      325.9,
+      722.5,
+      383.0
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.9816,
+     "box_xyxy": [
+      134.4,
+      547.0,
+      436.6,
+      713.4
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.963,
+     "box_xyxy": [
+      743.2,
+      551.2,
+      835.4,
+      619.9
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.9601,
+     "box_xyxy": [
+      360.8,
+      627.6,
+      442.0,
+      727.2
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.9463,
+     "box_xyxy": [
+      675.0,
+      522.3,
+      727.6,
+      593.0
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.941,
+     "box_xyxy": [
+      572.7,
+      562.5,
+      734.4,
+      613.3
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.9398,
+     "box_xyxy": [
+      584.4,
+      538.4,
+      822.1,
+      720.5
+     ]
+    },
+    {
+     "class": "Broken edge",
+     "score": 0.9258,
+     "box_xyxy": [
+      491.6,
+      611.5,
+      509.5,
+      649.8
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.9142,
+     "box_xyxy": [
+      593.1,
+      545.3,
+      734.0,
+      738.6
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.8905,
+     "box_xyxy": [
+      691.5,
+      531.7,
+      802.3,
+      667.9
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.879,
+     "box_xyxy": [
+      752.1,
+      498.0,
+      792.3,
+      599.8
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.8758,
+     "box_xyxy": [
+      595.6,
+      593.2,
+      694.9,
+      769.9
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.8547,
+     "box_xyxy": [
+      414.9,
+      661.9,
+      437.4,
+      734.5
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.8445,
+     "box_xyxy": [
+      583.7,
+      341.8,
+      773.7,
+      696.4
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.8098,
+     "box_xyxy": [
+      639.9,
+      568.7,
+      827.8,
+      652.6
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.8086,
+     "box_xyxy": [
+      355.9,
+      655.2,
+      445.6,
+      706.1
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.7958,
+     "box_xyxy": [
+      591.7,
+      654.3,
+      669.3,
+      719.3
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.7678,
+     "box_xyxy": [
+      705.9,
+      574.8,
+      758.9,
+      686.1
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.7397,
+     "box_xyxy": [
+      371.0,
+      619.7,
+      430.2,
+      697.6
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.7295,
+     "box_xyxy": [
+      575.8,
+      580.1,
+      760.9,
+      710.2
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.724,
+     "box_xyxy": [
+      721.8,
+      537.7,
+      839.6,
+      638.9
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.7123,
+     "box_xyxy": [
+      219.5,
+      590.8,
+      443.3,
+      721.6
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.7056,
+     "box_xyxy": [
+      567.7,
+      576.6,
+      673.7,
+      716.9
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.68,
+     "box_xyxy": [
+      748.8,
+      514.7,
+      824.0,
+      624.0
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.6789,
+     "box_xyxy": [
+      661.3,
+      531.8,
+      733.5,
+      646.2
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.6187,
+     "box_xyxy": [
+      621.0,
+      599.4,
+      687.4,
+      713.2
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.6029,
+     "box_xyxy": [
+      597.1,
+      645.9,
+      666.3,
+      764.9
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.589,
+     "box_xyxy": [
+      128.2,
+      550.5,
+      216.7,
+      594.6
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.5794,
+     "box_xyxy": [
+      645.6,
+      594.2,
+      803.6,
+      641.1
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.5549,
+     "box_xyxy": [
+      571.0,
+      619.3,
+      699.6,
+      713.2
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.5371,
+     "box_xyxy": [
+      694.0,
+      582.0,
+      819.1,
+      629.4
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.5281,
+     "box_xyxy": [
+      710.7,
+      583.3,
+      769.9,
+      626.7
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.5152,
+     "box_xyxy": [
+      740.7,
+      493.4,
+      795.6,
+      629.9
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.4813,
+     "box_xyxy": [
+      650.5,
+      529.6,
+      758.3,
+      693.9
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.4657,
+     "box_xyxy": [
+      287.7,
+      624.5,
+      437.9,
+      722.3
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.4562,
+     "box_xyxy": [
+      147.1,
+      549.8,
+      193.5,
+      625.4
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.4342,
+     "box_xyxy": [
+      131.6,
+      567.3,
+      203.6,
+      590.8
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.4146,
+     "box_xyxy": [
+      130.4,
+      546.5,
+      269.1,
+      623.0
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.4096,
+     "box_xyxy": [
+      691.2,
+      551.9,
+      768.5,
+      631.8
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.3763,
+     "box_xyxy": [
+      131.9,
+      549.6,
+      311.1,
+      653.0
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.362,
+     "box_xyxy": [
+      655.7,
+      543.5,
+      827.0,
+      633.8
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.3585,
+     "box_xyxy": [
+      748.2,
+      551.7,
+      820.7,
+      596.2
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.3373,
+     "box_xyxy": [
+      228.3,
+      584.6,
+      320.8,
+      657.5
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.3078,
+     "box_xyxy": [
+      813.3,
+      495.1,
+      855.8,
+      549.9
+     ]
+    },
+    {
+     "class": "Broken edge",
+     "score": 0.2979,
+     "box_xyxy": [
+      376.8,
+      777.5,
+      448.5,
+      807.2
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.2952,
+     "box_xyxy": [
+      630.7,
+      557.7,
+      739.8,
+      603.8
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.2768,
+     "box_xyxy": [
+      133.1,
+      566.6,
+      242.6,
+      609.7
+     ]
+    }
+   ]
+  },
+  "crate_000794.png": {
+   "mode": "bigdefect",
+   "threshold": 0.268252,
+   "crate_flagged": true,
+   "defects": [
+    {
+     "class": "Scratch",
+     "score": 0.9947,
+     "box_xyxy": [
+      597.2,
+      376.4,
+      657.6,
+      413.8
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.9831,
+     "box_xyxy": [
+      420.1,
+      527.7,
+      460.8,
+      605.3
+     ]
+    },
+    {
+     "class": "Crack",
+     "score": 0.8922,
+     "box_xyxy": [
+      307.5,
+      514.7,
+      353.0,
+      530.5
+     ]
+    },
+    {
+     "class": "Broken edge",
+     "score": 0.5587,
+     "box_xyxy": [
+      510.5,
+      790.6,
+      525.0,
+      819.1
+     ]
+    },
+    {
+     "class": "Crack",
+     "score": 0.4223,
+     "box_xyxy": [
+      275.2,
+      220.1,
+      436.8,
+      253.0
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.4016,
+     "box_xyxy": [
+      317.6,
+      517.5,
+      420.0,
+      561.4
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.39,
+     "box_xyxy": [
+      651.7,
+      414.2,
+      655.4,
+      473.2
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.361,
+     "box_xyxy": [
+      651.1,
+      413.3,
+      654.2,
+      472.0
+     ]
+    },
+    {
+     "class": "Broken edge",
+     "score": 0.3229,
+     "box_xyxy": [
+      418.1,
+      228.7,
+      432.2,
+      238.3
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.2727,
+     "box_xyxy": [
+      351.5,
+      527.6,
+      418.0,
+      559.9
+     ]
+    }
+   ]
+  }
+ },
+ "single_bigdefect": {
+  "crate_200242.png": {
+   "mode": "single_bigdefect",
+   "threshold": 0.525356,
+   "crate_flagged": false,
+   "defects": []
+  },
+  "crate_000256.png": {
+   "mode": "single_bigdefect",
+   "threshold": 0.525356,
+   "crate_flagged": true,
+   "defects": [
+    {
+     "class": "Scratch",
+     "score": 0.9913,
+     "box_xyxy": [
+      626.3,
+      258.7,
+      678.1,
+      382.6
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.9913,
+     "box_xyxy": [
+      371.2,
+      612.8,
+      445.2,
+      737.7
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.9818,
+     "box_xyxy": [
+      675.0,
+      522.5,
+      726.9,
+      587.4
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.9771,
+     "box_xyxy": [
+      139.2,
+      541.6,
+      432.2,
+      736.5
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.9748,
+     "box_xyxy": [
+      708.2,
+      325.6,
+      722.2,
+      382.4
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.9726,
+     "box_xyxy": [
+      749.0,
+      554.9,
+      832.8,
+      623.3
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.9585,
+     "box_xyxy": [
+      568.3,
+      559.8,
+      746.6,
+      617.3
+     ]
+    },
+    {
+     "class": "Broken edge",
+     "score": 0.9356,
+     "box_xyxy": [
+      492.0,
+      610.1,
+      509.6,
+      650.2
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.9086,
+     "box_xyxy": [
+      669.3,
+      518.8,
+      729.7,
+      600.2
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.908,
+     "box_xyxy": [
+      707.7,
+      585.3,
+      826.7,
+      623.3
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.9018,
+     "box_xyxy": [
+      647.3,
+      583.4,
+      823.7,
+      641.8
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.9011,
+     "box_xyxy": [
+      586.6,
+      564.7,
+      825.9,
+      715.4
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.8997,
+     "box_xyxy": [
+      707.2,
+      584.0,
+      808.4,
+      643.1
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.8885,
+     "box_xyxy": [
+      750.3,
+      503.0,
+      825.1,
+      644.0
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.885,
+     "box_xyxy": [
+      598.7,
+      578.9,
+      696.3,
+      776.1
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.8637,
+     "box_xyxy": [
+      646.6,
+      599.9,
+      805.3,
+      640.8
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.8118,
+     "box_xyxy": [
+      596.4,
+      580.9,
+      754.8,
+      771.2
+     ]
+    },
+    {
+     "class": "Broken edge",
+     "score": 0.8102,
+     "box_xyxy": [
+      376.2,
+      777.1,
+      450.9,
+      807.1
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.7785,
+     "box_xyxy": [
+      583.5,
+      575.9,
+      725.2,
+      739.6
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.7764,
+     "box_xyxy": [
+      672.9,
+      588.7,
+      820.7,
+      628.1
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.7614,
+     "box_xyxy": [
+      708.7,
+      577.7,
+      760.5,
+      686.6
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.7498,
+     "box_xyxy": [
+      353.0,
+      644.9,
+      443.8,
+      698.8
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.7463,
+     "box_xyxy": [
+      703.3,
+      528.6,
+      805.3,
+      675.7
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.7453,
+     "box_xyxy": [
+      755.4,
+      491.5,
+      790.0,
+      585.1
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.731,
+     "box_xyxy": [
+      609.0,
+      589.9,
+      818.0,
+      644.4
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.7289,
+     "box_xyxy": [
+      713.9,
+      584.7,
+      766.6,
+      625.7
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.7276,
+     "box_xyxy": [
+      576.6,
+      323.6,
+      776.3,
+      682.0
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.7248,
+     "box_xyxy": [
+      567.2,
+      567.2,
+      822.7,
+      618.5
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.7225,
+     "box_xyxy": [
+      590.8,
+      653.2,
+      664.9,
+      719.5
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.7031,
+     "box_xyxy": [
+      217.9,
+      584.7,
+      442.4,
+      728.7
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.6959,
+     "box_xyxy": [
+      710.8,
+      548.9,
+      829.2,
+      638.0
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.6912,
+     "box_xyxy": [
+      419.3,
+      658.6,
+      437.5,
+      736.5
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.6849,
+     "box_xyxy": [
+      690.0,
+      565.8,
+      810.4,
+      660.9
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.6772,
+     "box_xyxy": [
+      697.9,
+      519.4,
+      725.9,
+      573.2
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.6757,
+     "box_xyxy": [
+      591.5,
+      540.7,
+      841.5,
+      672.6
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.6568,
+     "box_xyxy": [
+      667.6,
+      546.3,
+      812.2,
+      643.9
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.6547,
+     "box_xyxy": [
+      586.0,
+      505.9,
+      731.1,
+      763.8
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.6511,
+     "box_xyxy": [
+      750.0,
+      493.6,
+      792.8,
+      614.5
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.6353,
+     "box_xyxy": [
+      360.6,
+      629.2,
+      439.4,
+      717.3
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.6312,
+     "box_xyxy": [
+      608.8,
+      536.0,
+      725.2,
+      718.0
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.6157,
+     "box_xyxy": [
+      586.8,
+      583.9,
+      763.8,
+      717.6
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.5995,
+     "box_xyxy": [
+      657.4,
+      522.4,
+      735.8,
+      652.2
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.597,
+     "box_xyxy": [
+      663.0,
+      559.7,
+      737.4,
+      586.7
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.5961,
+     "box_xyxy": [
+      330.7,
+      648.6,
+      444.7,
+      709.3
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.5899,
+     "box_xyxy": [
+      756.7,
+      504.2,
+      807.5,
+      617.7
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.5857,
+     "box_xyxy": [
+      599.6,
+      639.7,
+      665.0,
+      766.4
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.5814,
+     "box_xyxy": [
+      566.9,
+      574.9,
+      673.2,
+      720.4
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.5679,
+     "box_xyxy": [
+      412.6,
+      658.3,
+      436.0,
+      729.5
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.5636,
+     "box_xyxy": [
+      241.7,
+      572.6,
+      245.8,
+      635.1
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.5556,
+     "box_xyxy": [
+      340.3,
+      635.1,
+      446.6,
+      728.8
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.555,
+     "box_xyxy": [
+      749.0,
+      552.9,
+      829.9,
+      597.4
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.5549,
+     "box_xyxy": [
+      135.3,
+      553.3,
+      404.1,
+      686.8
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.5538,
+     "box_xyxy": [
+      653.9,
+      555.5,
+      738.0,
+      614.1
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.5495,
+     "box_xyxy": [
+      762.5,
+      493.9,
+      790.5,
+      568.7
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.5418,
+     "box_xyxy": [
+      604.5,
+      558.8,
+      742.4,
+      599.7
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.5344,
+     "box_xyxy": [
+      400.5,
+      634.5,
+      438.8,
+      735.7
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.5329,
+     "box_xyxy": [
+      240.4,
+      576.2,
+      249.8,
+      636.4
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.5324,
+     "box_xyxy": [
+      750.5,
+      544.6,
+      823.1,
+      616.1
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.5312,
+     "box_xyxy": [
+      242.7,
+      572.0,
+      247.1,
+      635.6
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.5295,
+     "box_xyxy": [
+      241.2,
+      573.9,
+      244.9,
+      637.4
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.5255,
+     "box_xyxy": [
+      679.4,
+      579.0,
+      823.2,
+      619.9
+     ]
+    }
+   ]
+  },
+  "crate_000794.png": {
+   "mode": "single_bigdefect",
+   "threshold": 0.525356,
+   "crate_flagged": true,
+   "defects": [
+    {
+     "class": "Scratch",
+     "score": 0.9906,
+     "box_xyxy": [
+      597.8,
+      377.2,
+      658.3,
+      414.7
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.9854,
+     "box_xyxy": [
+      420.8,
+      528.6,
+      461.3,
+      608.7
+     ]
+    },
+    {
+     "class": "Crack",
+     "score": 0.8748,
+     "box_xyxy": [
+      308.8,
+      515.1,
+      354.1,
+      530.0
+     ]
+    },
+    {
+     "class": "Scratch",
+     "score": 0.8404,
+     "box_xyxy": [
+      314.3,
+      517.1,
+      416.3,
+      559.7
+     ]
+    },
+    {
+     "class": "Crack",
+     "score": 0.7037,
+     "box_xyxy": [
+      262.2,
+      219.2,
+      433.7,
+      252.6
+     ]
+    }
+   ]
+  }
+ }
+}

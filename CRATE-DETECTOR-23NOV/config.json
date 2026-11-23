@@ -1,0 +1,143 @@
+{
+ "classes": [
+  "Crack",
+  "Dent",
+  "Water damage",
+  "Scratch",
+  "Hole",
+  "Broken edge"
+ ],
+ "models": {
+  "fr": {
+   "kind": "frcnn",
+   "sizes": "16,32,64,128,256",
+   "ratios": "0.5,1,2",
+   "topn": "2000,1000",
+   "dets": 100,
+   "fp16": false,
+   "file": "fr_current.pt",
+   "about": "Faster R-CNN, all labels (current model)"
+  },
+  "cur": {
+   "kind": "frcnn",
+   "sizes": "16,32,64,128,256",
+   "ratios": "0.5,1,2",
+   "topn": "2000,1000",
+   "dets": 100,
+   "fp16": false,
+   "file": "cur_curriculum.pt",
+   "about": "Faster R-CNN, curriculum (big first, then small)"
+  },
+  "A16": {
+   "kind": "frcnn",
+   "sizes": "8/16,16/32,32/64,64/128,128/256",
+   "ratios": "0.25,0.5,1,2,4",
+   "topn": "3000,2000",
+   "dets": 300,
+   "fp16": true,
+   "file": "A16_thin_anchors.pt",
+   "about": "Faster R-CNN, thin anchors + augmentation"
+  },
+  "y32": {
+   "kind": "yolo",
+   "file": "y32_yolo11s.pt",
+   "about": "YOLO11s context-heavy"
+  },
+  "mB": {
+   "kind": "frcnn",
+   "sizes": "16,32,64,128,256",
+   "ratios": "0.5,1,2",
+   "topn": "2000,1000",
+   "dets": 100,
+   "fp16": false,
+   "file": "mB_bigdefect.pt",
+   "about": "Faster R-CNN, big-defect labels (min-size rule B)"
+  },
+  "mBfull": {
+   "kind": "frcnn",
+   "sizes": "16,32,64,128,256",
+   "ratios": "0.5,1,2",
+   "topn": "2000,1000",
+   "dets": 100,
+   "fp16": false,
+   "file": "mBfull_bigdefect.pt",
+   "about": "Faster R-CNN, big-defect labels, longer training"
+  },
+  "B": {
+   "kind": "frcnn",
+   "sizes": "16,32,64,128,256",
+   "ratios": "0.5,1,2",
+   "topn": "2000,1000",
+   "dets": 100,
+   "fp16": true,
+   "file": "B_copypaste.pt",
+   "about": "Faster R-CNN, copy-paste augmentation"
+  },
+  "C12": {
+   "kind": "frcnn",
+   "sizes": "16,32,64,128,256",
+   "ratios": "0.5,1,2",
+   "topn": "2000,1000",
+   "dets": 100,
+   "fp16": true,
+   "file": "C12_bigdefect_crackboost.pt",
+   "about": "Faster R-CNN, big-defect labels + big cracks oversampled"
+  }
+ },
+ "modes": {
+  "single": {
+   "models": [
+    "fr"
+   ],
+   "threshold": 0.567913,
+   "val_recall_all": 36.8,
+   "val_recall_big": 50.8,
+   "val_recall_small": 21.4,
+   "val_damaged_views_found": 73.5,
+   "val_healthy_views_flagged": "6/36",
+   "ms_per_image_A5000_incl_read": 70
+  },
+  "ensemble": {
+   "models": [
+    "fr",
+    "cur",
+    "A16",
+    "y32"
+   ],
+   "threshold": 0.371794,
+   "val_recall_all": 41.7,
+   "val_recall_big": 56.7,
+   "val_recall_small": 25.3,
+   "val_damaged_views_found": 78.3,
+   "val_healthy_views_flagged": "6/36",
+   "ms_per_image_A5000_incl_read": 171
+  },
+  "bigdefect": {
+   "models": [
+    "mB",
+    "B",
+    "mBfull",
+    "C12"
+   ],
+   "threshold": 0.268252,
+   "val_recall_all": 40.7,
+   "val_recall_big": 67.8,
+   "val_recall_small": 11.2,
+   "val_damaged_views_found": 77.9,
+   "val_healthy_views_flagged": "6/36",
+   "ms_per_image_A5000_incl_read": 185
+  },
+  "single_bigdefect": {
+   "models": [
+    "mB"
+   ],
+   "threshold": 0.525356,
+   "val_recall_all": 32.3,
+   "val_recall_big": 56.7,
+   "val_recall_small": 5.5,
+   "val_damaged_views_found": 71.6,
+   "val_healthy_views_flagged": "6/36",
+   "ms_per_image_A5000_incl_read": 71
+  }
+ }
+}
