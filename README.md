@@ -18,4 +18,6 @@ r = det.predict("crate.png")      # r["crate_flagged"], r["defects"] = [{class, 
 | bigdefect | 4 | 40.7% | 67.8% | 185 |
 | single_bigdefect | 1 | 32.3% | 56.7% | 70 |
 
+**Sample photos to try it:** `samples/CRATE-SAMPLE-IMAGES-10.zip` - 10 crate photos where the models find the defects, with the expected output and drawn boxes (red = model, green = label).
+
 Validation set, threshold so <= 6 of 36 healthy photos get any box.
