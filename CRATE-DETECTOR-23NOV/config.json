@@ -139,5 +139,7 @@
    "val_healthy_views_flagged": "6/36",
    "ms_per_image_A5000_incl_read": 71
   }
- }
+ },
+ "drop_classes": [],
+ "drop_classes_note": "Classes listed here are never reported. Empty = report all 6 classes. To hide water damage (false alarms on darker plywood), set [\"Water damage\"] or pass CrateDetector(..., drop_classes=[\"Water damage\"])."
 }

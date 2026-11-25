@@ -5,7 +5,11 @@ Crate defect detector - one file, all models, pick with MODE.
     det = CrateDetector("/Workspace/.../CRATE-DETECTOR-23NOV", mode="single")   # or "ensemble", "bigdefect", "single_bigdefect"
     out = det.predict("crate.png")       # path, PIL image, or RGB numpy array
     out["crate_flagged"]                 # True if any defect >= threshold
-    out["defects"]                       # [{"class": "Crack", "score": 0.91, "box_xyxy": [x0, y0, x1, y1]}, ...]
+    out["defects"]                       # every box: [{"class": "Crack", "score": 0.91, "box_xyxy": [x0, y0, x1, y1]}, ...]
+    out["damage_areas"]                  # ONE box + ONE label per damaged area (overlapping/nearby boxes merged) - show these
+    det.draw("crate.png", out, "annotated.jpg")   # annotated image (damage_areas by default)
+    det.report(out, frame_id="crate.png")         # verdict JSON like the pipeline diagram (DAMAGE_DETECTED / NO_DEFECT_DETECTED)
+All 6 classes are reported. To hide a class (e.g. water damage): config.json "drop_classes": ["Water damage"] or CrateDetector(..., drop_classes=["Water damage"]).
 
 Modes (all recall numbers on our validation set, threshold set so <= 6 of 36 healthy views get any box):
   single            1 model  (current model)              all 36.8% | big(>=32px) 50.8% |  ~45 ms
@@ -73,16 +77,62 @@ def _wbf(per_model, n_models, iou=0.55, topk=100, min_score=0.01):
     return sorted(rows, key=lambda x: -x['score'])[:topk]
 
 
+def _weight_path(folder, fname, cache=None):
+    """Path of a model file. Uses models/<fname> if it exists. Otherwise the file is stored in git as parts
+    (models/<fname>.part00, .part01 ... - GitHub refuses files > 100 MB): they are joined ONCE, byte for byte, into a cache
+    folder on local disk (default: <temp dir>/crate_detector_weights, e.g. /tmp on Databricks), never into the package folder."""
+    import glob, tempfile
+    whole = os.path.join(folder, 'models', fname)
+    if os.path.exists(whole): return whole
+    parts = sorted(glob.glob(whole + '.part*'))
+    if not parts: raise FileNotFoundError(f'{whole} not found and no {fname}.part* files - see GUIDE.txt')
+    cache = cache or os.path.join(tempfile.gettempdir(), 'crate_detector_weights'); os.makedirs(cache, exist_ok=True)
+    out = os.path.join(cache, fname)
+    if not os.path.exists(out) or os.path.getsize(out) != sum(os.path.getsize(p) for p in parts):
+        tmp = out + '.joining'
+        with open(tmp, 'wb') as o:
+            for p in parts:
+                with open(p, 'rb') as f:
+                    for b in iter(lambda: f.read(1 << 24), b''): o.write(b)
+        os.replace(tmp, out)
+    return out
+
+
+def merge_areas(defects, img_w, img_h, gap=30, max_frac=0.25):
+    """One box + one label per damaged area (for display / reporting).
+    Boxes that overlap or are within `gap` px of each other are the same damaged area; the area box surrounds all of them and
+    takes the label + score of its most confident box. Very large boxes (> max_frac of the photo) are never merged into others."""
+    big = lambda b: (b[2] - b[0]) * (b[3] - b[1]) > max_frac * img_w * img_h
+    near = lambda a, b: not (big(a) or big(b)) and not (a[2] + gap < b[0] or b[2] + gap < a[0] or a[3] + gap < b[1] or b[3] + gap < a[1])
+    groups = []
+    for d in sorted(defects, key=lambda d: -d['score']):
+        hit = [g for g in groups if any(near(d['box_xyxy'], x['box_xyxy']) for x in g)]
+        if not hit: groups.append([d]); continue
+        hit[0].append(d)
+        for g in hit[1:]: hit[0].extend(g); groups.remove(g)
+    out = []
+    for g in groups:
+        top = max(g, key=lambda x: x['score'])
+        out.append({'class': top['class'], 'score': top['score'], 'n_boxes': len(g),
+                    'box_xyxy': [min(x['box_xyxy'][0] for x in g), min(x['box_xyxy'][1] for x in g), max(x['box_xyxy'][2] for x in g), max(x['box_xyxy'][3] for x in g)]})
+    return sorted(out, key=lambda d: -d['score'])
+
+
+COLORS = {'Crack': (255, 40, 40), 'Broken edge': (255, 150, 0), 'Hole': (200, 0, 255), 'Scratch': (0, 200, 255), 'Water damage': (0, 120, 255), 'Dent': (0, 220, 120)}
+
+
 class CrateDetector:
-    def __init__(self, folder, mode='single', device=None, threshold=None):
+    def __init__(self, folder, mode='single', device=None, threshold=None, drop_classes=None, weights_cache=None):
         self.folder = folder; cfg = json.load(open(os.path.join(folder, 'config.json')))
+        # classes never reported (default from config.json "drop_classes", e.g. ["Water damage"]); pass [] to report all
+        self.drop = set(cfg.get('drop_classes', []) if drop_classes is None else drop_classes)
         if mode not in cfg['modes']: raise ValueError(f"mode must be one of {list(cfg['modes'])}")
         self.mode = mode; self.mcfg = cfg['modes'][mode]
         self.threshold = float(threshold if threshold is not None else self.mcfg['threshold'])
         self.dev = torch.device(device or ('cuda' if torch.cuda.is_available() else 'cpu'))
         self.models = {}
         for name in self.mcfg['models']:
-            spec = cfg['models'][name]; path = os.path.join(folder, 'models', spec['file'])
+            spec = cfg['models'][name]; path = _weight_path(folder, spec['file'], weights_cache)
             if spec['kind'] == 'yolo':
                 from ultralytics import YOLO
                 self.models[name] = (spec, YOLO(path, task='detect'))
@@ -122,8 +172,37 @@ class CrateDetector:
         P, (w, h) = self.predict_raw(image); sx, sy = w / 1024, h / 1024
         defects = [{'class': CLASSES[p['category_id'] - 1], 'score': round(p['score'], 4),
                     'box_xyxy': [round(p['bbox'][0] * sx, 1), round(p['bbox'][1] * sy, 1), round((p['bbox'][0] + p['bbox'][2]) * sx, 1), round((p['bbox'][1] + p['bbox'][3]) * sy, 1)]}
-                   for p in P if p['score'] >= self.threshold]
-        return {'mode': self.mode, 'threshold': self.threshold, 'crate_flagged': bool(defects), 'defects': defects}
+                   for p in P if p['score'] >= self.threshold and CLASSES[p['category_id'] - 1] not in self.drop]
+        return {'mode': self.mode, 'threshold': self.threshold, 'crate_flagged': bool(defects), 'image_size': [w, h],
+                'damage_areas': merge_areas(defects, w, h), 'defects': defects}
+
+    def report(self, result, frame_id=None):
+        """Verdict JSON in the shape of the pipeline diagram (docs/diagrams/Crate-Damage-Production-Pipeline.png):
+        verdict, defect_count and one damage record per damaged area. Percentages are of the WHOLE image width/height
+        (no crate-face segmentation in this package yet), location = 3x3 grid of the image."""
+        W, H = result['image_size']; recs = []
+        for k, a in enumerate(result['damage_areas']):
+            x0, y0, x1, y1 = a['box_xyxy']; cx, cy = (x0 + x1) / 2 / W, (y0 + y1) / 2 / H
+            loc = ['upper', 'middle', 'lower'][min(2, int(cy * 3))] + ' ' + ['left', 'centre', 'right'][min(2, int(cx * 3))]
+            recs.append({'type': a['class'], 'confidence': a['score'], 'location': loc,
+                         'bbox_pct': [round(100 * x0 / W, 1), round(100 * y0 / H, 1), round(100 * (x1 - x0) / W, 1), round(100 * (y1 - y0) / H, 1)],
+                         'size_pct': round(100 * max(x1 - x0, y1 - y0) / W, 1), 'box_xyxy_px': a['box_xyxy']})
+        return {'frame': frame_id, 'verdict': 'DAMAGE_DETECTED' if recs else 'NO_DEFECT_DETECTED', 'defect_count': len(recs),
+                'reason': None, 'mode': result['mode'], 'threshold': result['threshold'], 'damage': recs}
+
+    def draw(self, image, result, out_path=None, use='damage_areas'):
+        """Annotated copy of the image: one coloured box + label per damaged area (use='defects' for every raw box)."""
+        from PIL import ImageDraw, ImageFont
+        im = (Image.open(image) if isinstance(image, str) else (Image.fromarray(image) if isinstance(image, np.ndarray) else image)).convert('RGB').copy()
+        d = ImageDraw.Draw(im); fs = max(14, im.width // 60)
+        try: font = ImageFont.truetype('DejaVuSans-Bold.ttf', fs)
+        except Exception: font = ImageFont.load_default()
+        for x in result[use]:
+            x0, y0, x1, y1 = x['box_xyxy']; c = COLORS.get(x['class'], (255, 255, 0)); d.rectangle([x0, y0, x1, y1], outline=c, width=max(3, im.width // 300))
+            t = f"{x['class']} {x['score']:.2f}"; tw = d.textlength(t, font=font); ty = y0 - fs - 8 if y0 > fs + 8 else y1 + 2
+            d.rectangle([x0, ty, x0 + tw + 10, ty + fs + 6], fill=c); d.text((x0 + 5, ty + 2), t, fill=(0, 0, 0), font=font)
+        if out_path: im.save(out_path, quality=92)
+        return im
 
     def predict_folder(self, folder, out_jsonl, exts=('.png', '.jpg', '.jpeg', '.bmp')):
         n = 0

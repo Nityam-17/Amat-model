@@ -1,11 +1,16 @@
-CRATE DEFECT DETECTOR - HOW TO USE (23 Nov 2026)
-================================================
+CRATE DEFECT DETECTOR - HOW TO USE (updated 25 Nov 2026)
+========================================================
 One folder, all our models, one switch: MODE.
 
 WHAT IS IN THE FOLDER
   crate_detector.py      the code (one class: CrateDetector). Import this.
   config.json            which models each MODE uses + the tested threshold per MODE
-  models/                8 model files (7 Faster R-CNN + 1 YOLO11s), ~1.2 GB
+  models/                8 model files (7 Faster R-CNN + 1 YOLO11s), ~1.2 GB.
+                         In the GitHub repo each file is stored in parts (<name>.pt.part00, .part01) because GitHub
+                         refuses files > 100 MB. crate_detector.py joins them automatically the first time into
+                         <temp dir>/crate_detector_weights/ (e.g. /tmp on Databricks; never into this folder), byte-identical
+                         to the original. Other place: CrateDetector(..., weights_cache="/local_disk0/w").
+                         By hand: cat fr_current.pt.part* > models/fr_current.pt (a whole .pt in models/ is used first).
   databricks_notebook.py ready notebook: import into Databricks, pick MODE in the dropdown, Run all
   run_folder.py          same thing from a terminal, writes one JSON line per image (+ optional drawn boxes)
   selftest.py + selftest/  3 sample images + our answers -> check your setup gives the same result
@@ -41,10 +46,28 @@ INPUT
   Any other size is resized to 1024 x 1024 (stretched) and the boxes are scaled back to the original size.
 
 OUTPUT (per photo)
-  {"mode": "single", "threshold": 0.5679, "crate_flagged": true,
-   "defects": [{"class": "Crack", "score": 0.91, "box_xyxy": [x0, y0, x1, y1]}, ...]}
-  classes: Crack, Dent, Water damage, Scratch, Hole, Broken edge
+  {"mode": "single", "threshold": 0.5679, "crate_flagged": true, "image_size": [W, H],
+   "damage_areas": [{"class": "Crack", "score": 0.97, "n_boxes": 4, "box_xyxy": [x0, y0, x1, y1]}, ...],   <- SHOW THESE
+   "defects":      [{"class": "Crack", "score": 0.91, "box_xyxy": [x0, y0, x1, y1]}, ...]}               <- every raw box
+  classes: Crack, Dent, Water damage, Scratch, Hole, Broken edge.  Pixel coordinates of the ORIGINAL image.
   crate_flagged = at least one defect above the threshold.
+
+  damage_areas = ONE box + ONE label per damaged area (added 25 Nov). The models often put several boxes on one damage
+  (one per branch of a crack, or crack + broken edge on the same tear). For display/reporting these are merged:
+    - boxes that overlap or are within 30 px of each other = the same damaged area (any type)
+    - the area box surrounds all of them; label + score = its most confident box; n_boxes = how many were merged
+    - very large boxes (> 25% of the photo) are never merged into others (so one big box can't swallow the crate)
+  Display only - the recall numbers above are measured on the raw "defects".
+
+  det.draw(image, r, "annotated.jpg")        annotated image, one coloured box + label per damaged area
+  det.draw(image, r, "raw.jpg", use="defects")   every raw box
+  det.report(r, frame_id="cam2_000123.jpg")  verdict JSON shaped like the pipeline diagram:
+     {"verdict": "DAMAGE_DETECTED" | "NO_DEFECT_DETECTED", "defect_count": n,
+      "damage": [{"type", "confidence", "location" (3x3 grid, e.g. "lower left"), "bbox_pct" [x,y,w,h] in % of image,
+                  "size_pct" (longest side % of image width), "box_xyxy_px"}]}
+
+  HIDING A CLASS: config.json "drop_classes": [] reports all 6 classes (default). To hide water damage (it gives
+  false alarms on darker orange plywood) set ["Water damage"], or CrateDetector(folder, mode, drop_classes=["Water damage"]).
 
 USE IT IN PYTHON (e.g. inside the logo / golden-image pipeline)
     import sys; sys.path.append("/Workspace/Users/<you>/CRATE-DETECTOR-23NOV")
@@ -69,9 +92,11 @@ DATABRICKS STEPS
      GPU: should print ALL OK. CPU: "single" and "single_bigdefect" give the same result; the 4-model modes can differ by
      a few boxes near the threshold (two of the models run half precision on GPU and full precision on CPU) - fine.
   No internet needed at run time: all weights are in models/.
+  SIMPLEST: databricks_notebook.py CELL 1 - LOAD is the only cell needed; it gives you `det` for your own pipeline.
 
 FROM A TERMINAL
   python run_folder.py CRATE-DETECTOR-23NOV  photos/  results.jsonl --mode bigdefect --draw drawn/
+  (--draw = one box per damaged area; add --raw-boxes to draw every raw box)
 
 VERSIONS WE TESTED WITH
   torch 2.14.1, torchvision 0.29.1, ultralytics 8.4.197, Python 3.10, RTX A5000.
@@ -81,3 +106,4 @@ LIMITS (please keep in mind)
   - Numbers are from the validation set, which was also used to pick models; the untouched test set is not scored yet.
   - Small defects (< 32 px) are mostly missed in the bigdefect modes. Use "ensemble" if small ones matter.
   - Big cracks in the newer photos (crate_2xxxxx) are the weakest spot (~38% in bigdefect).
+  - Known false alarms on new photos: knots called "Hole"; plain darker plywood panels called "Water damage".
