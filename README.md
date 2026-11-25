@@ -4,6 +4,8 @@ Detects damage on wooden shipping crates: **Crack, Broken edge, Hole, Scratch, W
 
 **The model weights are in this repo**, in `CRATE-DETECTOR-23NOV/models/`. Each file is split into parts under 100 MB because of GitHub's file size limit. The code joins them back automatically into byte-identical files, so clone and run.
 
+**Giving this repo to Claude (or any AI assistant)?** Don't zip the whole repo, because the weights make it 1.2 GB. Give it **`CODE-ONLY-FOR-CLAUDE.zip`** (about 1 MB) instead: all the code, guides and diagrams, without the weights or self-test photos. The model file names are listed in `config.json` and in INTEGRATION-GUIDE.md, section 1. The real weights stay in this repo, and the code loads them from `CRATE-DETECTOR-23NOV/models/` when it runs.
+
 **Start here: [INTEGRATION-GUIDE.md](INTEGRATION-GUIDE.md)** covers Databricks setup in one cell, the output format, the verdict JSON, pipeline code and diagrams.
 
 ```python

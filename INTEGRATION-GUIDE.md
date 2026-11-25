@@ -29,6 +29,9 @@ The same cell is ready-made as **CELL 1 - LOAD** in `CRATE-DETECTOR-23NOV/databr
 
 ---
 
+> **Note for an AI assistant reading this from `CODE-ONLY-FOR-CLAUDE.zip`:** the `models/` folder isn't in that zip, because it's 1.2 GB.
+> On the real machine it holds the weight parts listed below. The code doesn't need changes for that; `CrateDetector` finds and joins them.
+
 ## 1. What is in the repo
 
 ```
